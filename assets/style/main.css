@@ -1,0 +1,224 @@
+:root{
+    --header-bg-col: rgb(2, 37, 71);
+    --header-font-col: rgb(255, 255, 255);
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cabin', sans-serif;
+}
+#website-wrapper{
+    width: 100%;
+    overflow: hidden;
+
+}
+#main-header{
+    background-color: var(--header-bg-col);
+    color: var(--header-font-col);
+}
+#main-header a{
+    color: var(--header-font-col);
+}
+a:hover{
+    text-decoration: none;
+}
+ul{
+    margin: 0;
+}
+ul li{
+    list-style-type: none;
+}
+#top-header a:hover, #header-nav a:hover {
+    color: rgba(255, 255, 255, 0.651);
+}
+.btn-top-header:hover{
+    background-color:  var(--header-bg-col);
+    color: rgba(255, 255, 255, 0.651);
+}
+.btn-top-header{
+    padding: 0 10px;
+    color: var(--header-font-col);
+    background-color:  var(--header-bg-col);
+    border: none;
+
+}
+#shopping-cart{
+    color: var(--header-font-col);
+}
+
+.left-header, .right-header{
+    display: inline-flex;  
+    justify-content: center;
+    align-items: center;
+}
+.left-header li, .right-header li{
+    padding: 5px 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+.left-header li:first-of-type, .right-header li:first-of-type{
+    border-left: none;
+}
+
+.right-header{
+   float:right;
+}
+/* .col:after{
+    content: "";
+    clear: both;
+    display: block;
+} */
+header{
+   border-top: 1px solid  rgba(255, 255, 255, 0.2);
+}
+.header-box img{
+   width: 80px
+}
+.header-box, .search-box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.search-box input{
+    display: flex; 
+   height: 50px;
+   width: 80%;
+   border: none;
+   border-radius: 10px 0 0 10px; 
+   padding-left: 10px;
+}
+.search-box input::placeholder{
+   padding-left: 10px;
+}
+.search-box input:focus{
+    outline: none;
+}
+.search-icon{
+    background-color: var(--header-font-col);
+    color: var(--header-bg-col);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0 10px 10px 0;
+    height: 50px;
+    padding: 5px 5px 0 0;
+    font-size: 25px;
+}
+#header-nav{
+    display: flex;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) ;
+    margin: 0;
+}
+.nav-list{
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.btn-menu{
+    color: var(--header-bg-col);
+    font-size: 1.5em;
+    text-transform: uppercase;
+    padding: 5px 45px ;
+    background-color: var(--header-font-col);
+    border: none;
+   border-bottom: 1px solid var(--header-bg-col);
+}
+.categories-text{
+    padding-left: 10px;
+}
+.nav-list li{
+    text-transform: uppercase;
+    font-size: 1.1em;
+    padding: 10px 35px ;
+
+}
+#main-container{
+    width: 100%;
+    margin: 30px 0;
+    
+}
+.row-footer{
+    width: 100%;
+    margin: 0;
+}
+.container-footer{
+   width: 90%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+
+}
+.articles-footer{
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid rgba(2, 36, 71, 0.158);
+    border-bottom: 1px solid rgba(2, 36, 71, 0.158);
+    height: 150px;
+}
+/* .row-footer{
+    height: 150px;
+} */
+
+#main-footer{
+    padding-top: 20px;
+    background-color: rgb(2, 37, 71);
+    color: rgba(255, 255, 255, 0.651);
+    font-size: 0.9em;
+}
+#main-footer a{
+    color: rgba(255, 255, 255, 0.651);
+}
+#main-footer a:hover{
+    color: var(--header-font-col);
+
+}
+#main-footer h5{
+    color: var(--header-font-col);
+}
+.footer-logo{
+    width: 60px;
+}
+.footer-company-name{
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0 10px;
+}
+.footer-contact-info{
+    justify-content: center;
+    margin: 15px;
+}
+.nav-footer li{
+    padding: 5px 0;
+    font-size: 1.1em;
+}
+.nav-footer h5{
+    padding: 10px 0;
+}
+.container-copyrights p{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+.container-copyrights{
+    padding: 25px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.096)
+}
+.img-categories{
+    width: 200px;
+    height: 250px;
+    margin-top: 30px;
+}
+.container {
+text-align: center;
+margin-top: 25px;
+margin-bottom: 60px;
+}
+
+
+
+
+
+

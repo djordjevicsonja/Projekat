@@ -46,8 +46,17 @@ ul li{
     border: none;
 
 }
-#shopping-cart{
+.cart-icon{
     color: var(--header-font-col);
+}
+.cart-btn{
+    position: relative;
+    cursor: pointer;
+}
+.cart-items{
+    position: absolute;
+    right: -8px;
+    top: -8px;
 }
 
 .left-header, .right-header{

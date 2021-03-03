@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="assets/style/main.css">
+    <script src="assets/js/index.js" defer></script>
+</head>
+
+<body>
+    <div id="website-wrapper">
+        <div id="main-header">
+            <div id="top-header" class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <ul class="contact left-header">
+                            <li><a href="tel:+381(0)11-210-41-89">+381(0)11-210-41-89 </a> </li>
+                            <li><a href="tel:+381(0)64-813-30-94">+381(0)64-813-30-94 </a></li>
+                            <li><a href="mailto:office@vodocentar.com">office@vodocentar.com</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <ul class="register-login-cart right-header">
+
+                            <li>
+                                <button type="button" class="btn btn-light btn-top-header">Prijava</button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-light btn-top-header">Registracija</button>
+
+                            </li>
+                            <li>
+                                <div class="cart-btn">
+                                    <span class="cart-icon">
+                                        <i class="fas fa-shopping-cart"></i></span>
+                                    <div class="cart-items">0</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <header id="search-logo-box">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 d-flex">
+                            <div class="logo-box">
+                                <a href="index.html">
+                                    <h2><img src="assets/images/logo-img.png" alt="Kupatilski namestaj Beograd"
+                                            class="header-logo">KUPATILSKI NAMEŠTAJ BEOGRAD</h2>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 d-flex">
+                            <div class="search-box">
+
+                                <input type="search" id="search" placeholder="Pretraga proizvoda">
+                                <div class="search-icon">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <span class="dropdown-icon">
+                                    <i class="fas fa-bars"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div id="navigation">
+                <nav id="header-nav" class="row">
+                    <div class="col-12 offset-1 col-lg-7 offset-2">
+                        <ul class="nav-list">
+                            <li><a href="index.html">Početna</a> </li>
+                            <li><a href="porucivanje.html">Poručivanje</a> </li>
+                            <li><a href="kontakt.html">Kontakt</a> </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div id="container-wrapper">
+            <div id="container-product-box" class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-3" id="sort-price">
+                        <div>
+                            <p>SORTIRAJ PO CENI</p>
+                            <select name="selectByPrice" class="form-control" id="selectByPrice">
+                                <option value="price decrease">Sortiraj</option>
+                                <option value="price increase">Od manje ka većoj</option>
+                                <option value="price decrease">Od veće ka manjoj</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p>KATEGORIJE</p>
+                            <select name="Categories" class="form-control" id="selectByCategory"></select>
+                        </div>
+                    </div>
+                    <div class="col-11 offset-1 col-md-8 d-flex flex-wrap" id="categoryFromSelect">
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div id="container-footer">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="articles-footer">
+                            <h4>PORUČIVANJE PUTEM SAJTA 24H</h4>
+                            <p>Online prodavnica radi 00-24h, 7 dana u nedelji.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="articles-footer">
+                            <h4>LAKO PLAĆANJE</h4>
+                            <p>Plaćanje pouzećem, gotovinsko plaćanje, platnim karticama, čekovima građana, plaćanje
+                                preko računa.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="articles-footer">
+                            <h4>BESPLATNA DOSTAVA</h4>
+                            <p>Za porudžbine preko 10.000,00 RSD besplatna.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="articles-footer">
+                            <h4>STALNI POPUSTI</h4>
+                            <p>Za stalne mušterije, ekstra popusti. Za majstore, stalne akcije</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div id="main-footer">
+                <div class="container top-footer">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="footer-company-name">
+                                <img src="assets/images/logo-img.png" alt="Kupatilski namestaj Beograd"
+                                    class="footer-logo">
+                                <h5>KUPATILSKI NAMEŠTAJ BEOGRAD</h5>
+                            </div>
+                            <div class="footer-contact-left">
+                                <ul>
+                                    <li>Lokal 1:</li>
+                                    <li>Cara Dušana 201,Zemun Srbija</li>
+                                    <li><a href="tel:+381(0)11-210-41-89">Telefon: +381(0)11-210-41-89 </a> </li>
+                                    <li><a href="tel:+381(0)64-813-30-94">Telefon: +381(0)64-813-30-94 </a></li>
+                                    <li><a href="mailto:office@vodocentar.com">Email: salon@vodocentar.com</a></li>
+                                    <li>Radno vreme:</li>
+                                    <li>pon-pet: 08h-20h;</li>
+                                    <li>sub-ned: 08h-16h</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="footer-contact-right">
+                                <ul>
+                                    <li>Lokal 2:</li>
+                                    <li>Bežanijska 56,Zemun Srbija</li>
+                                    <li><a href="tel:+381(0)11-210-41-89">Telefon: +381(0)11-770-77-64 </a> </li>
+                                    <li><a href="tel:+381(0)64-813-30-94">Telefon: +381(0)64-813-30-97 </a></li>
+                                    <li><a href="mailto:office@vodocentar.com">Email: office@vodocentar.com</a></li>
+                                    <li>Radno vreme:</li>
+
+                                    <li>pon-pet: 09h-17h;</li>
+                                    <li>sub-ned: 08h-15h</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="nav-footer">
+                                <h5>KORISNIČKI SERVIS</h5>
+                                <ul>
+                                    <li><a href="#">Način plaćanja</a></li>
+                                    <li><a href="#">Uputstvo za poručivanje</a></li>
+                                    <li><a href="#">Isporuka</a></li>
+                                    <li><a href="#">Zamena artikla</a></li>
+                                    <li><a href="#">Reklamacije</a></li>
+                                    <li><a href="#">Usluga montaže</a></li>
+                                    <li><a href="#">Politika privatnosti</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="copyrights">
+                    <div class="container container-copyrights">
+                        <p> VODO-CENTAR d.o.o. &copy; 2021</p>
+                        <p><small>Zadržava pravo na mogućnost greške i izmenu cena.</small></p>
+                        <p><small>Cene podležu promenama bey prethodne najave.</small></p>
+                        <p><small>Prikazani proizvodi možda neće biti dostupni u našoj maloprodaji</small></p>
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

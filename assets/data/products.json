@@ -12,7 +12,7 @@
         "dimension": "47x85",
         "desc": "Lavabo sa ormarićem 40x85 domaćeg proizvođača. Ormarić je izrađen od medijapana i iverice zaštićeno poliuretanom. Lavabo je keramički sa otvorom za slavinu sa gornje strane",
         "image": {
-          "src": "images/proizvodi/lav_orm-p1",
+          "src": "assets/images/proizvodi/lav_orm_p1.jpeg",
           "alt": "Lavabo sa ormarićem Lapino"
         },
         "price": "8580"
@@ -25,7 +25,7 @@
         "dimension": "60x85",
         "desc": "Lavabo sa ormarićem 60x85 domaćeg proizvođača. Ormarić je izrađen od medijapana i iverice zaštićeno poliuretanom. Lavabo je keramički sa otvorom za slavinu sa gornje strane",
         "image": {
-          "src": "images/proizvodi/lav_orm-p2",
+          "src": "assets/images/proizvodi/lav_orm_p2.jpeg",
           "alt": "Lavabo sa ormarićem Lapino Roma"
         },
         "price": "12580"
@@ -45,7 +45,7 @@
         "dimension": "60x85",
         "desc": "Zidni lavabo sa ormarićem 60x85 domaćeg proizvođača. Ormarić je izrađen od medijapana i iverice zaštićeno poliuretanom. Lavabo je keramički sa otvorom za slavinu sa gornje strane",
         "image": {
-          "src": "images/proizvodi/lav_orm-z1",
+          "src": "assets/images/proizvodi/lav_orm_z1.jpeg",
           "alt": "Lavabo sa ormarićem konzolni Lapino"
         },
         "price": "15960"
@@ -58,7 +58,7 @@
         "dimension": "25x45",
         "desc": "Zidni lavabo sa ormarićem 25x45 domaćeg proizvođača. Ormarić je izrađen od medijapana i iverice zaštićeno poliuretanom. Lavabo je keramički sa otvorom za slavinu sa gornje strane",
         "image": {
-          "src": "images/proizvodi/lav_orm-z2",
+          "src": "assets/images/proizvodi/lav_orm_z2.jpeg",
           "alt": "Lavabo sa ormarićem konzolni Lapino"
         },
         "price": "10430"
@@ -71,7 +71,7 @@
         "dimension": "60x55",
         "desc": "Zidni lavabo sa ormarićem 60x55 domaćeg proizvođača. Ormarić je izrađen od medijapana i iverice zaštićeno poliuretanom. Lavabo je keramički sa otvorom za slavinu sa gornje strane",
         "image": {
-          "src": "images/proizvodi/lav_orm-z3",
+          "src": "assets/images/proizvodi/lav_orm_z3.jpeg",
           "alt": "Lavabo sa ormarićem konzolni Lapino Flora"
         },
         "price": "18020"
@@ -91,7 +91,7 @@
         "dimension": "95x75",
         "desc": "Ogledalo sa ormarićem 95x75 domaćeg proizvođača. Ogledalo je izrađeno od medijapana i iverice zaštićeno poliuretanom. Na samom ormariću je ugrađeno svetlo, prekidač i utičnica",
         "image": {
-          "src": "images/proizvodi/ogl_orm1",
+          "src": "assets/images/proizvodi/ogl_orm1.jpg",
           "alt": "Ogledalo sa ormarićem Lapino Sve"
         },
         "price": "11084"
@@ -104,7 +104,7 @@
         "dimension": "45x60",
         "desc": "Ogledalo sa ormarićem 45x60 domaćeg proizvođača. Ogledalo je izrađeno od medijapana i iverice zaštićeno poliuretanom. Na samom ormariću je ugrađeno svetlo, prekidač i utičnica",
         "image": {
-          "src": "images/proizvodi/ogl_orm2",
+          "src": "assets/images/proizvodi/ogl_orm2.jpg",
           "alt": "Ogledalo sa ormarićem Lapino Lela"
         },
         "price": "5492"
@@ -117,7 +117,7 @@
         "dimension": "55x75",
         "desc": "Ogledalo sa ormarićem 55x75 domaćeg proizvođača. Ogledalo je izrađeno od medijapana i iverice zaštićeno poliuretanom. Na samom ormariću je ugrađeno svetlo, prekidač i utičnica",
         "image": {
-          "src": "images/proizvodi/ogl_orm3",
+          "src": "assets/images/proizvodi/ogl_orm3.jpg",
           "alt": "Ogledalo sa ormarićem Lapino Ana Mirela"
         },
         "price": "5400"
@@ -130,7 +130,7 @@
         "dimension": "60x65",
         "desc": "Ogledalo sa ormarićem 55x75 domaćeg proizvođača. Ogledalo je izrađeno od medijapana i iverice zaštićeno poliuretanom. Na samom ormariću je ugrađeno svetlo, prekidač i utičnica",
         "image": {
-          "src": "images/proizvodi/ogl_orm4",
+          "src": "assets/images/proizvodi/ogl_orm4.jpg",
           "alt": "Ogledalo sa ormarićem Lapino Karma"
         },
         "price": "6000"
@@ -150,7 +150,7 @@
         "dimension": "50x70",
         "desc": "Ogledalo dimenzija 50x70",
         "image": {
-          "src": "images/proizvodi/ogl1",
+          "src": "assets/images/proizvodi/ogl1.jpg",
           "alt": "Ogledalo Minotti"
         },
         "price": "1128"
@@ -163,7 +163,7 @@
         "dimension": "45x60",
         "desc": "Ogledalo dimenzija 45x60",
         "image": {
-          "src": "images/proizvodi/ogl2",
+          "src": "assets/images/proizvodi/ogl2.jpg",
           "alt": "Ogledalo Minotti"
         },
         "price": "1148"
@@ -176,7 +176,7 @@
         "dimension": "50x70",
         "desc": "Ogledalo dimenzija 50x70 sa ugradjenim svetlom",
         "image": {
-          "src": "images/proizvodi/ogl3",
+          "src": "assets/images/proizvodi/ogl3.jpg",
           "alt": "Ogledalo Minotti"
         },
         "price": "2983"
@@ -196,7 +196,7 @@
         "dimension": "190x35",
         "desc": "Vertikala 195x50 sa tri fioke domaćeg proizvođača. Ormarić je izrađeno od medijapana i iverice zaštićeno poliuretanom. Jednostavnih linija ovaj deo kupatilskog nameštaja će vam omogućiti odlaganje svih stvari koje su vam potrebne u kupatilo. Savršeno rešenje za Vaše kupatilo, dovoljno prostora za odlaganje stvari i pritom ne zauzima mnogo mesta.",
         "image": {
-          "src": "images/proizvodi/orm_f1",
+          "src": "assets/images/proizvodi/orm_f1.jpg",
           "alt": "Ormarić sa fiokama Lapino"
         },
         "price": "10150"
@@ -209,7 +209,7 @@
         "dimension": "60x80",
         "desc": "Zidna komoda 60×80 Lapino Sudo Roma domaćeg proizvođača. Ormarić je izrađen od medijapana i iverice zaštićeno poliuretanom.",
         "image": {
-          "src": "images/proizvodi/orm_f2",
+          "src": "assets/images/proizvodi/orm_f2.jpg",
           "alt": "Ormarić sa fiokama Lapino Sudo Roma"
         },
         "price": "7790"
@@ -229,7 +229,7 @@
         "dimension": "190x50",
         "desc": "Vertikala sa korpom 195x50 domaćeg proizvođača. Ormarić je izrađeno od medijapana i iverice zaštićeno poliuretanom. Jednostavnih linija ovaj deo kupatilskog nameštaja će vam omogućiti odlaganje svih stvari koje su vam potrebne u kupatilo. Savršeno rešenje za Vaše kupatilo, dovoljno prostora za odlaganje stvari i pritom ne zauzima mnogo mesta.",
         "image": {
-          "src": "images/proizvodi/orm_k1",
+          "src": "assets/images/proizvodi/orm_k1.jpg",
           "alt": "Ormarić sa korpom Lapino Roma"
         },
         "price": "14150"
@@ -242,7 +242,7 @@
         "dimension": "190x35",
         "desc": "Vertikala sa korpom 195x50 domaćeg proizvođača. Ormarić je izrađeno od medijapana i iverice zaštićeno poliuretanom. Jednostavnih linija ovaj deo kupatilskog nameštaja će vam omogućiti odlaganje svih stvari koje su vam potrebne u kupatilo. Savršeno rešenje za Vaše kupatilo, dovoljno prostora za odlaganje stvari i pritom ne zauzima mnogo mesta.",
         "image": {
-          "src": "images/proizvodi/orm_k2",
+          "src": "assets/images/proizvodi/orm_k2.jpg",
           "alt": "Ormarić sa korpom Lapino Virela"
         },
         "price": "10150"
@@ -262,7 +262,7 @@
         "dimension": "35x150",
         "desc": "Vertikala sa policama195x50 domaćeg proizvođača. Ormarić je izrađeno od medijapana i iverice zaštićeno poliuretanom. Jednostavnih linija ovaj deo kupatilskog nameštaja će vam omogućiti odlaganje svih stvari koje su vam potrebne u kupatilo. Savršeno rešenje za Vaše kupatilo, dovoljno prostora za odlaganje stvari i pritom ne zauzima mnogo mesta.",
         "image": {
-          "src": "images/proizvodi/orm_p1",
+          "src": "assets/images/proizvodi/orm_p1.jpg",
           "alt": "Ormarić sa policama Lapino Sena"
         },
         "price": "10810"
@@ -275,7 +275,7 @@
         "dimension": "120x50",
         "desc": "Ormarić sa policama 120x50 domaćeg proizvođača. Ormarić je izrađeno od medijapana i iverice zaštićeno poliuretanom. Jednostavnih linija ovaj deo kupatilskog nameštaja će vam omogućiti odlaganje svih stvari koje su vam potrebne u kupatilo. Savršeno rešenje za Vaše kupatilo, dovoljno prostora za odlaganje stvari i pritom ne zauzima mnogo mesta.",
         "image": {
-          "src": "images/proizvodi/orm_p2",
+          "src": "assets/images/proizvodi/orm_p2.jpg",
           "alt": "Ormarić sa policama Lapino"
         },
         "price": "8240"

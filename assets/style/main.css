@@ -150,12 +150,39 @@ header{
     overflow: hidden;
     cursor: pointer;
     box-shadow:2px 0px 6px 1px #3D3A5E
-
+}
+.img-item-container{
+    width: 220px;
+    height: 350px; 
+    margin: 20px 10px 30px;
+    border: 1px solid rgba(128, 128, 128, 0.055);
+}
+.img-item-container ul{   
+    background-color:rgba(128, 128, 128, 0.055);
+}
+.img-item-container ul li:last-of-type{
+    color: red;
+    font-size: 1.1em;
+}
+.img-item{
+    margin:5px;
+    width: 180px;
+    height: 230px; 
+}
+.seeProduct{
+    border: none;
+    background-color: var(--header-bg-col);
+    color: #fff;
+    width: 220px;
+    padding: 5px 0;
+    font-size: 1.1em;
+    margin-bottom: 50px;
 }
 .img-categories{
     width: 100%;
     height: 100%;
 }
+
 .seeAllBtn{
     position: absolute;
     top: 50%;
@@ -168,12 +195,11 @@ header{
     background-color: var(--light-hover-col);
     font-size: 1.7em;
     font-weight: bold;
-    transition: 2s linear;
+    transition: 1s linear;
     transform: translateX(101%);
 }
 .img-container:hover .seeAllBtn{
     transform: translateX(0);
-    /* cursor: pointer; */
 }
 
 .seeAllBtn:hover{
@@ -263,13 +289,20 @@ margin: 50px auto 80px auto;
     .logo-box h2{
         font-size: 1.5em;
     }   
-    #header-nav{
-        display:none;
+    .nav-list {
+    flex-direction: column;
+    align-items: flex-end;
     }
+    #header-nav{
+        display: none;
+    }
+    
+   
     .dropdown-icon{
         display:block;
         position: absolute;
         right: 15px;
+        cursor:pointer;
     }
 }
 @media (min-width: 1110px) and (max-width: 1143px){
@@ -293,7 +326,15 @@ margin: 50px auto 80px auto;
         position: relative;
         top: 5px;
     }
-   
+    .img-container{
+        width: 150px;
+        height: 200px;
+    } 
+    #selectByPrice, #selectByCategory{
+        width: 80%;
+        margin: 0 auto;
+       text-align: center;
+    }
 }
 @media (min-width: 768px) and (max-width: 992px){
     .articles-footer h4{
@@ -304,13 +345,7 @@ margin: 50px auto 80px auto;
         margin-bottom: 0px;
     }
 }
-@media (max-width: 768px){
-    .img-categories{
-        width: 150px;
-        height: 200px;
-    }
- 
-}
+
 
 
 

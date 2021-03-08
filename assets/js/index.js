@@ -9,6 +9,10 @@ const selectByPrice = document.querySelector('#selectByPrice');
 const closeCart = document.querySelector('.close-cart');
 const cartBtn = document.querySelector('.cart-btn');
 const cartDOM = document.querySelector('#cart');
+const cartWrapper = document.querySelector('.cart-wrapp');
+const cartContent = document.querySelector('.cart-content');
+const cartTotal = document.querySelector('cart-total');
+
 let cart=[];
 
 class AllProducts {
@@ -80,7 +84,9 @@ class View {
    console.log(data);
    let categProd = data.filter(prod => prod.categoryId == getId);
    console.log(categProd);
-   this.renderProducts(categProd);    
+   this.renderProducts(categProd);   
+   this.getAddToCart(categProd);
+
 }
 
   renderProducts(prodCateg){
@@ -92,7 +98,7 @@ class View {
             <div class="img-cart-container">
             
             <img src="${prodCateg[i].articles[j].image.src}" alt="${prodCateg[i].articles[j].image.alt}" class="img-fluid img-item">
-            <button class="addToCart"><i class="fas fa-shopping-cart"></i></button>
+            <button class="addToCart" data-id="${prodCateg[i].articles[j].id}"><i class="fas fa-shopping-cart"></i></button>
             </div>            
             <ul>
             <li>${prodCateg[i].articles[j].article}</li>
@@ -108,8 +114,7 @@ class View {
     if (window.location.href.endsWith("proizvodi.html")) {
       categoryFromSelect.innerHTML = output;
     }
-
-    this.getProductBtn()
+    this.getProductBtn();
   }
 
   getProductBtn() {
@@ -123,6 +128,26 @@ class View {
           });
         });
     };
+  getAddToCart(prodCateg){
+    const addToCart = [...document.querySelectorAll('.addToCart')];
+    addToCart.forEach(btn =>{
+      btn.addEventListener('click',(e)=>{
+        for (let i in prodCateg) {
+          for (let j in prodCateg[i].articles){
+            if(e.target.dataset.id == prodCateg[i].articles[j].id){
+              let prod = prodCateg[i].articles[j];
+              console.log(prod);
+             cart = Storage.getCart();
+             cart.push(prod);
+             Storage.saveCart(cart);
+             const itemEl = new Cart(prod);
+             itemEl.renderCart(prod)
+            }
+          }
+        }
+      })
+    })
+  };
 
   selectCategory(data){
     let categorySelect = data.map(el => el.category);
@@ -146,53 +171,43 @@ class View {
           Storage.category(selectedCat);  
           let setupProd = data.filter(prod => prod.categoryId == selectedCat);
           this.renderProducts(setupProd);
+          this.getAddToCart(setupProd);
           console.log(setupProd);
         })
 
   }
-  filterByPrice(data){
-  
+  filterByPrice(data){  
     selectByPrice.addEventListener('change',()=>{
       let id = Storage.getCategory();
       let productToSort = data.filter(prod=>{
         if(prod.categoryId== id){
          return prod.articles;
         }
-      });
 
-    let idx = selectByPrice.selectedIndex;
-   
+      });
+    let products = productToSort[0].articles;
+    let idx = selectByPrice.selectedIndex;   
         if(idx=='1'){
-          productToSort.sort((a, b)=>{
-            if(a.price>b.price) return -1;
-            else if(a.price<b.price) return 1;
+          products.sort((a, b)=>{
+            if(a.price > b.price) return 1;
+            else if(a.price < b.price) return -1;
             else return 0;
           });
+         productToSort[0].articles=products;
           this.renderProducts(productToSort);
         }else if(idx=='2'){
-         productToSort.sort((a,b)=>{
-           if(a.price>b.price) return 1;
-           else if(a.price<b.price) return -1;
+          products.sort((a, b)=>{
+           if(a.price > b.price) return -1;
+           else if(a.price < b.price) return 1;
            else return 0;
          });
+         productToSort[0].articles=products;
          this.renderProducts(productToSort);   
         }    
     });
   }
-
   listeners() {
     this.showDropdownMenu();
-    this.displayCart();
-  }
-  showCart(){
-      cartDOM.classList.add('showCart');   
-  }
-  hideCart(){
-    cartDOM.classList.remove('showCart');
-  }
-  displayCart(){
-    cartBtn.addEventListener('click',this.showCart);
-    closeCart.addEventListener('click',this.hideCart);
   }
   showDropdownMenu() {
     dropdownIcon.addEventListener("click", () => {
@@ -202,7 +217,6 @@ class View {
     });
   }
 }
-
 class Product {
   allAboutProduct(data){
     let productId = Storage.getProduct();
@@ -213,7 +227,8 @@ class Product {
         for(let j in categ.articles){
           let prod = categ.articles[j];
           if(prod.id == productId){
-        this.renderProduct(prod);          
+        this.renderProduct(prod);  
+        this.addProdToCart(prod); 
           }
         }
       }
@@ -243,10 +258,71 @@ class Product {
     if(window.location.href.endsWith("proizvod.html")){
    productBox.appendChild(productRow);
     }
-    
 
   }
+  addProdToCart(prod){
+    const addProdToCartBtn = document.querySelector('.addProdToCart');
+    if(window.location.href.endsWith("proizvod.html")){
+      addProdToCartBtn.addEventListener('click',(e)=>{
+        console.log (e.target.dataset.id);
+        cart=Storage.getCart();
+        cart.push(prod);
+        console.log(cart);
+        Storage.saveCart(cart); 
+       const itemEl = new Cart(prod);
+      itemEl.renderCart(prod)
+       })
+    }    
+  }
 }
+class Cart {
+  setupCart(){
+    cart = Storage.getCart();
+    console.log(cart)
+    this.fillCart(cart);
+    // this.setCartValues();
+    cartBtn.addEventListener('click', this.showCart);
+    closeCart.addEventListener('click', this.hideCart);
+  }
+  renderCart(art){
+    const cartItem= document.createElement('div'); 
+    cartItem.classList.add("cart-item");   
+    
+    cartItem.innerHTML= `
+      <img src="${art.image.src}">
+      <div>
+          <h5 class="cart-article">${art.article}-${art.manifactur}</h5>
+          <h6 class="cart-price">${art.price} </h6>
+          <button class="remove-item">Obriši artikal</button>
+      </div>
+      <div class="cart-input">
+      <input type="number" class="cart-quantity" value="1">
+      </div>
+    
+      `;
+      cartContent.appendChild(cartItem);   
+      const removeFromCartBtn = [...document.getElementsByClassName('remove-item')];
+      removeFromCartBtn.forEach(b => b.addEventListener('click',this.removeCartItem))
+    
+  }
+  removeCartItem(e){
+    let clickedBtn = e.target;
+    clickedBtn.parentElement.parentElement.remove();
+  }
+  fillCart(cart){
+    cart.forEach(art=>this.renderCart(art));
+  }
+
+showCart(){
+    cartDOM.style.transform = "translateX(0)";  
+    cartWrapper.classList.add('cart-wrapp-bckg'); 
+}
+hideCart(){
+  cartDOM.style.transform = "translateX(100%)";
+  cartWrapper.classList.remove('cart-wrapp-bckg');  
+}
+}
+  
 
 class Storage {
   static category(btnId) {
@@ -274,8 +350,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const products = new AllProducts();
   const view = new View();
   const p = new Product();
-
+  const cart = new Cart();
+  cart.setupCart();
   view.listeners();
+  
   products
     .getAllProducts()
     .then((data) => {

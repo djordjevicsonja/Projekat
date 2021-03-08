@@ -47,7 +47,8 @@ ul li{
 
 }
 .cart-icon{
-    color: var(--header-font-col);
+    font-size: 1.1em;
+    color: rgb(250, 65, 65);
 }
 .cart-btn{
     position: relative;
@@ -57,6 +58,90 @@ ul li{
     position: absolute;
     right: -8px;
     top: -8px;
+}
+#cart{
+    position:fixed;
+    margin-right:0px;
+    top:0;
+    right:0;
+    width: 100%;
+    height:100%;
+    overflow: scroll;
+    z-index: 3;
+    background-color: var(--header-font-col);
+    padding: 1.5rem;
+    transition: 1s linear;
+    transform: translateX(101%);
+}
+.showCart{
+    transform: translateX(0);
+}
+.cart-item{
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    grid-column-gap: 1.5rem;
+    margin: 1.5rem 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.527);
+    padding-bottom: 1rem;
+}
+.cart-item img{
+    width:75px;
+    height:75px;
+}
+#cart h2{
+    text-transform: capitalize;
+    text-align: center;
+}
+.cart-input input{
+    width: 50px;
+    text-align: center;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.39);
+}
+.cart-item h5{
+    font-size: 0.9rem;
+    letter-spacing: 0.1 rem;
+}
+.cart-footer{
+    text-align: center;
+}
+.clear-cart, .order{
+    border:none;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+}
+.remove-item{
+    color:rgba(231, 2, 2, 0.801);
+    cursor:pointer;
+}
+.clear-cart{
+    color: white;
+    background-color: rgba(231, 2, 2, 0.699);
+    border-radius: 5px;
+    font-size: 0.8em;
+}
+.order{
+    color: white;
+    background-color: var(--header-bg-col);
+    border-radius: 5px;
+    padding: 0.7rem;
+}
+.cart-footer h3{
+    margin: 1.5rem 0;
+}
+.close-cart{
+    font-size: 1.7rem;
+    color:var(--header-bg-col);
+    cursor: pointer;
+}
+@media screen and (min-width: 768px){
+    #cart{
+        width:30vw;
+        min-width: 450px;
+    }
 }
 .left-header, .right-header{
     display: inline-flex;  
@@ -157,7 +242,7 @@ header{
     margin: 20px 10px 30px;
     border: 1px solid rgba(128, 128, 128, 0.055);
 }
-.img-item-container ul{   
+.img-item-container ul{ 
     background-color:rgba(128, 128, 128, 0.055);
 }
 .img-item-container ul li:last-of-type{
@@ -174,10 +259,38 @@ header{
     background-color: var(--header-bg-col);
     color: #fff;
     width: 220px;
-    padding: 5px 0;
+    padding: 7px 0;
     font-size: 1.1em;
     margin-bottom: 50px;
 }
+.seeProduct:hover{
+    transition: 1s linear;
+    background-color: rgba(2, 36, 71, 0.842);
+}
+.img-cart-container{
+    position: relative;
+    overflow: hidden;
+}
+.addToCart{
+    position: absolute;
+    border:none;
+    color:var(--header-bg-col);
+    background-color: rgba(255, 0, 0, 0.493);
+    padding: 0.6rem;
+    font-size: 1.2rem;
+    width: 100%;
+    bottom:0;
+    right: 0;
+    transition: 1s linear;
+    transform: translateY(101%);
+}
+.img-cart-container:hover .addToCart{
+    transform: translateY(0);
+}
+.addToCart:hover{
+ background-color:  rgba(255, 0, 0, 0.815);
+}
+
 .img-categories{
     width: 100%;
     height: 100%;
@@ -277,6 +390,47 @@ margin: 50px auto 80px auto;
     padding: 25px 0;
     border-top: 1px solid var(--light-border);
 }
+.select-title{
+    margin-top: 2rem;
+}
+
+.gmap_canvas iframe{
+    width: 100%;
+    height: 70vh;
+}
+.contact ul {
+    text-align: start;
+    margin-bottom: 2rem;
+}
+.contact a {
+   color: rgb(0,0,0);
+}
+.contact a:hover{
+    color: rgb(1, 1, 168);
+}
+/* .product-img{
+height: ;
+} */
+.product-img img{
+    width: 80%;
+    height: 80%;
+}
+.product-info{
+text-align: start;
+}
+.addProdToCart{
+    border:none;
+    background-color: rgba(255, 0, 0, 0.774);
+    width: 40%;
+    padding: 0.7rem;
+    text-transform: uppercase;
+    margin:15px 0px;
+}
+.addProdToCart:hover{
+    color:var(--header-bg-col);
+    background-color: rgba(255, 0, 0, 0.493);
+}
+
 
 @media (max-width: 991px){
     .left-header{
@@ -295,8 +449,7 @@ margin: 50px auto 80px auto;
     }
     #header-nav{
         display: none;
-    }
-    
+    }   
    
     .dropdown-icon{
         display:block;
@@ -334,6 +487,9 @@ margin: 50px auto 80px auto;
         width: 80%;
         margin: 0 auto;
        text-align: center;
+    }
+    .select-title{
+        margin-top: 0.5rem;
     }
 }
 @media (min-width: 768px) and (max-width: 992px){

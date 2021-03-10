@@ -447,7 +447,37 @@ text-align: start;
     color:var(--header-bg-col);
     background-color: rgba(255, 0, 0, 0.493);
 }
-
+.form-group input{
+    width: 70%;    
+}
+.form-group label{
+    display: block;
+    text-align: start;
+    font-size: 1.2rem;
+    margin: 5px 0px 0px;
+}
+.form-group p{
+    text-align: start;
+    color:rgba(255, 0, 0, 0.774);
+    font-size: 0.8rem;
+}
+.error{
+    border-color: rgba(255, 0, 0, 0.774);   
+}
+.formBtn{
+    text-align: start;
+}
+#submit-btn{
+    padding: 10px 20px;
+    background-color: var(--header-bg-col);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+}
+.error:focus{
+    border-color: rgba(255, 0, 0, 0.774);   
+    box-shadow: 1px solid rgba(255, 0, 0, 0.774);
+}
 
 @media (max-width: 991px){
     .left-header{

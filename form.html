@@ -78,7 +78,7 @@
             </header>
             <div id="navigation">
                 <nav id="header-nav" class="row">
-                    <div class="col-12 offset-1 col-lg-7 offset-2">
+                    <div class="col-10 offset-1 col-lg-7 offset-2">
                         <ul class="nav-list">
                             <li><a href="index.html">Početna</a> </li>
                             <li><a href="porucivanje.html">Poručivanje</a> </li>
@@ -89,46 +89,63 @@
             </div>
         </div>
         <div class="cart-wrapp">
-        <div id="cart">
-            <span class="close-cart">
-                <i class="fas fa-window-close"></i>
-            </span>
-            <h2>Vaša korpa</h2>
-            <div class="cart-content">
-               
-             </div>
-             <div class="cart-footer">
-                <button class="clear-cart">Ukloni sve iz korpe</button>
-                 <h3>Ukupno: <span class="cart-total"></span>RSD</h3>
-                 <div>
-                    <button class="order">Završi kupovinu</button>   
-                 </div>
-             </div>
+            <div id="cart">
+                <span class="close-cart">
+                    <i class="fas fa-window-close"></i>
+                </span>
+                <h2>Vaša korpa</h2>
+                <div class="cart-content">
+                   
+                </div>
+                <div class="cart-footer">
+                    <button class="clear-cart">Ukloni sve iz korpe</button>
+                    <h3>Ukupno: <span class="cart-total"></span>RSD</h3>
+                    <div>
+                        <button class="order">Završi kupovinu</button>
+                    </div>
+                </div>
             </div>
 
         </div>
         <div id="container-wrapper">
-            <div id="container-product-box" class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-md-3" id="sort-price">
-                        <div>
-                            <h5 class='select-title'>SORTIRAJ PO CENI</h5>
-                            <select name="selectByPrice" class="form-control" id="selectByPrice">
-                                <option value="price decrease">Sortiraj</option>
-                                <option value="price increase">Od manje ka većoj</option>
-                                <option value="price decrease">Od veće ka manjoj</option>
-                            </select>
-                        </div>
-                        <div>
-                            <h5 class='select-title'>KATEGORIJE</h5>
-                            <select name="Categories" class="form-control" id="selectByCategory"></select>
-                        </div>
+            <div id="container-product-box" class="container">
+                <form action="#" method="POST" onsubmit="return formValidation()">
+                    <div class="form-group">
+                        <label for="ime">Ime</label>
+                        <input type="text" class="form-control" id="ime" placeholder="Unesite ime">
+                        <p id="error-ime"></p>
                     </div>
-                    <div class="col-11 offset-1 col-md-8 d-flex flex-wrap" id="categoryFromSelect">
+                    <div class="form-group">
+                        <label for="prezime">Prezime</label>
+                        <input type="text" class="form-control" id="prezime" placeholder="Unesite Prezime">
+                        <p id="error-prezime"></p>
 
+                    </div> 
+                    <div class="form-group">
+                        <label for="grad">Grad</label>
+                        <input type="text" class="form-control" id="grad" placeholder="Unesite grad">
+                        <p id="error-grad"></p>
+                    </div> 
+                    <div class="form-group">
+                        <label for="adresa">Adresa</label>
+                        <input type="text" class="form-control" id="adresa" placeholder="Unesite adresu">
+                        <p id="error-adresa"></p>
 
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Unesite email">
+                        <p id="error-email"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefon">Telefon</label>
+                        <input type="text" class="form-control" id="telefon" placeholder="Unesite broj telefona">
+                        <p id="error-telefon"></p>
+                    </div>
+                    <div class='formBtn'>
+                        <input type="submit" id="submit-btn" value="Pošalji">
+                    </div>                 
+                </form>
 
             </div>
             <div id="container-footer">

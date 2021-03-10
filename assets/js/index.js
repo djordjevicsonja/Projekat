@@ -15,6 +15,8 @@ const cartTotal = document.querySelector(".cart-total");
 const clearCartBtn = document.querySelector(".clear-cart");
 const orderBtn = document.querySelector(".order");
 const cartItems = document.querySelector(".cart-items");
+const searchInput = document.querySelector("#search");
+const searchInputBtn = document.querySelector(".search-icon");
 let cart = [];
 
 class AllProducts {
@@ -68,6 +70,58 @@ class CategoryProducts {
       this.filterByPrice(data);
     }
   }
+searchProducts(data){
+let allArticles = data.map(el => el.articles);
+console.log(allArticles);
+let arrayArticles = Array.prototype.concat.apply([],allArticles);
+console.log(arrayArticles);
+
+// searchInput.addEventListener('input', (e)=>{
+//   if(e.target.value === ''){
+//     alert("Unesii")
+//     return;
+//   }
+//   let res = arrayArticles.filter(d=>{
+//     return d.article.toLowerCase().includes(e.target.value.toLowerCase());
+    
+//   })
+//   console.log(res);
+//   res.forEach(e => {
+//     const prod = new Product(e);
+//     prod.renderProduct(e);
+//   })
+  
+
+// })
+// }
+searchInputBtn.addEventListener('click', ()=>{ 
+  if(searchInput.value == ""){
+    alert("Unesite proizvod za pretragu")
+  } else{
+      this.filterArticles(arrayArticles);
+    }
+})
+}
+filterArticles(arrayArticles){
+let searchTerm = searchInput.value;
+
+
+  let result = arrayArticles.filter((e)=>{
+    if(e.article.toLowerCase().indexOf(searchTerm)>= 0){
+      return true;
+    }else false;
+  })
+  productBox.innerHTML="";
+  if(window.location.href.endsWith('index.html') || window.location.href.endsWith('proizvodi.html') || window.location.href.endsWith('proizvod.html')){
+    result.forEach(e => {
+      const prod = new Product(e);
+      prod.renderProduct(e);
+      console.log(e);
+  })
+}
+
+
+}
 
   getCategoryBtns() {
     const seeAllBtn = [...document.querySelectorAll(".seeAllBtn")];
@@ -84,7 +138,7 @@ class CategoryProducts {
     let getId = Storage.getCategory();
     let categProd = data.filter((prod) => prod.categoryId == getId);
     this.renderProducts(categProd);
-     this.getAddToCart(categProd);
+    this.getAddToCart(categProd);
   }
 
   renderProducts(prodCateg) {
@@ -126,28 +180,29 @@ class CategoryProducts {
       });
     });
   }
- 
-  getAddToCart(prodCateg){
-    const addToCart = [...document.querySelectorAll('.addToCart')];
-    addToCart.forEach(btn =>{
-      btn.addEventListener('click',(e)=>{
+
+  getAddToCart(prodCateg) {
+    const addToCart = [...document.querySelectorAll(".addToCart")];
+    addToCart.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
         let ar = prodCateg[0].articles;
         let id = e.target.dataset.id;
-        let addAr= ar.filter(ar=>ar.id == id);
+        let addAr = ar.filter((ar) => ar.id == id);
         let prod = addAr[0];
         cart = Storage.getCart();
-      if(cart.some(item=>item.articleNumber === prod.articleNumber)){
-        alert("Proizvod je dodat u korpu");
-        return;
-      } else{
-        cart.push(prod);
-        Storage.saveCart(cart); 
-      }
-      const itemEl = new Cart(prod);
-        itemEl.renderCart(prod);     
-       })
-      })
-  };
+        if (cart.some((item) => item.articleNumber === prod.articleNumber)) {
+          alert("Proizvod je dodat u korpu");
+          return;
+        } else {
+          cart.push(prod);
+          Storage.saveCart(cart);
+        }
+        const itemEl = new Cart(prod);
+        itemEl.renderCart(prod);
+        itemEl.setCartValues();
+      });
+    });
+  }
 
   selectCategory(data) {
     let categorySelect = data.map((el) => el.category);
@@ -215,12 +270,12 @@ class CategoryProducts {
         : (navList.style.display = "none");
     });
   }
-  submitCart(){
-    orderBtn.addEventListener('click', ()=>{
-     if(cart.length > 0){
-       window.location.href = 'form.html';
-     }
-    })
+  submitCart() {
+    orderBtn.addEventListener("click", () => {
+      if (cart.length > 0) {
+        window.location.href = "form.html";
+      }
+    });
   }
 }
 
@@ -241,6 +296,7 @@ class Product {
       }
     }
   }
+
   renderProduct(prod) {
     const productRow = document.createElement("div");
     productRow.className = "row";
@@ -271,15 +327,16 @@ class Product {
     if (window.location.href.endsWith("proizvod.html")) {
       addProdToCartBtn.addEventListener("click", (e) => {
         cart = Storage.getCart();
-        if(cart.some(item => item.articleNumber === prod.articleNumber)){
-        alert("Proizvod je dodat u korpu");
-        return;
-      } else{
-      cart.push(prod);
-      Storage.saveCart(cart);        
-      };
-      const itemEl = new Cart(prod);
-            itemEl.renderCart(prod);
+        if (cart.some((item) => item.articleNumber === prod.articleNumber)) {
+          alert("Proizvod je dodat u korpu");
+          return;
+        } else {
+          cart.push(prod);
+          Storage.saveCart(cart);
+        }
+        const itemEl = new Cart(prod);
+        itemEl.renderCart(prod);
+        itemEl.setCartValues();
       });
     }
   }
@@ -303,19 +360,15 @@ class Cart {
           <button class="remove-item">Obriši artikal</button>          
       </div>
       <div class="cart-input">
-      <input type="number" class="cart-quantity" value="1">
+      <input type="number" class="cart-quantity" value="1" min="1">
       </div>
   
       `;
     cartContent.appendChild(cartItem);
-    // let quant = cartBtn.getElementsByClassName('cart-quantity');
-    // let quantAr = [...quant];
-    // quantAr.forEach(q =>{
-    //   q.addEventListener("change", ()=> this.getQuantity() );
-    // })
+
     cartItem
       .getElementsByClassName("cart-quantity")[0]
-      .addEventListener("change", () => this.setCartValues());    
+      .addEventListener("change", () => this.setCartValues());
   }
 
   cartLogic() {
@@ -331,25 +384,24 @@ class Cart {
     });
     let q = document.getElementsByClassName("cart-quantity");
     for (let i = 0; i < q.length; i++) {
-      q[i].addEventListener("change", (e) => { let input = e.target;
+      q[i].addEventListener("change", (e) => {
+        let input = e.target;
         if (isNaN(input.value) || input.value <= 0) {
-          input.value = 1; }
+          input.value = 1;
+        }
       });
     }
     this.setCartValues();
   }
-  // getQuantity(e) {
- 
-  // }
 
-  setCartValues(){
-   let items = document.getElementsByClassName("cart-item");    
+  setCartValues() {
+    let items = document.getElementsByClassName("cart-item");
     let sum = 0;
     let sumItems = 0;
     for (let i = 0; i < items.length; i++) {
       let priceEl = items[i].querySelector(".cart-price").innerHTML;
       let quantity = items[i].querySelector(".cart-quantity").value;
-      let price = parseFloat(priceEl.replace('RSD', ''));
+      let price = parseFloat(priceEl.replace("RSD", ""));
       sum = sum + price * parseInt(quantity);
       sumItems += parseInt(quantity);
       // console.log(items)
@@ -360,8 +412,8 @@ class Cart {
     cartTotal.innerText = sum;
     cartItems.innerText = sumItems;
     console.log(sum);
-    }
-  
+  }
+
   removeItem(itemNum) {
     cart = cart.filter((item) => item.articleNumber != itemNum);
     Storage.saveCart(cart);
@@ -381,7 +433,7 @@ class Cart {
   }
 
   fillCart(cart) {
-    if(cart.length > 0 || cart.length !== null){
+    if (cart.length > 0 || cart.length !== null) {
       cart.forEach((art) => this.renderCart(art));
     }
   }
@@ -429,6 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
   products
     .getAllProducts()
     .then((data) => {
+      category.searchProducts(data);
       category.renderCategories(data);
       product.allAboutProduct(data);
     })
@@ -437,15 +490,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-function formValidation(){
+function formValidation() {
   let errors = [];
-  let fName = document.querySelector('#ime');
-  let lName = document.querySelector('#prezime');
-  let city = document.querySelector('#grad');
-  let address = document.querySelector('#adresa');
-  let email = document.querySelector('#email');
-  let phone = document.querySelector('#telefon');
+  let fName = document.querySelector("#ime");
+  let lName = document.querySelector("#prezime");
+  let city = document.querySelector("#grad");
+  let address = document.querySelector("#adresa");
+  let email = document.querySelector("#email");
+  let phone = document.querySelector("#telefon");
 
   let regFName = /^[A-Z][a-z]+$/;
   let regLName = /(^[A-Z][a-z]+)+$/;
@@ -454,60 +506,63 @@ function formValidation(){
   let regEmail = /^[\w]+([.-]?[\w\d]+)*@[\w]+([.-]?[\w]+)*(\.\w{2,4})+$/;
   let regPhone = /^06[01234569]\/\d{3}\-\d{3,4}$/;
 
-  if(fName.value === "" || !regFName.test(fName.value)){
-    errors.push('first name error');
+  if (fName.value === "" || !regFName.test(fName.value)) {
+    errors.push("first name error");
     fName.classList.add("error");
-    document.querySelector('#error-ime').innerHTML = 'Unesite podatke u polje'
-  }else{
+    document.querySelector("#error-ime").innerHTML = "Unesite podatke u polje";
+  } else {
     fName.classList.remove("error");
-    document.querySelector('#error-ime').innerHTML = '';
-  };
-  if(lName.value === "" || !regLName.test(lName.value)){
-    errors.push('last name error');
+    document.querySelector("#error-ime").innerHTML = "";
+  }
+  if (lName.value === "" || !regLName.test(lName.value)) {
+    errors.push("last name error");
     lName.classList.add("error");
-    document.querySelector('#error-prezime').innerHTML = 'Unesite podatke u polje';
-  }else{
+    document.querySelector("#error-prezime").innerHTML =
+      "Unesite podatke u polje";
+  } else {
     lName.classList.remove("error");
-    document.querySelector('#error-prezime').innerHTML = '';
-  };
-  if(regCity.value === "" || !regCity.test(city.value)){
-    errors.push('city error');
+    document.querySelector("#error-prezime").innerHTML = "";
+  }
+  if (regCity.value === "" || !regCity.test(city.value)) {
+    errors.push("city error");
     city.classList.add("error");
-    document.querySelector('#error-grad').innerHTML = 'Unesite podatke u polje'
-  }else{
+    document.querySelector("#error-grad").innerHTML = "Unesite podatke u polje";
+  } else {
     city.classList.remove("error");
-    document.querySelector('#error-grad').innerHTML = '';
-  };
-  if(address.value === "" || !regAddress.test(address.value)){
-    errors.push('address error');
+    document.querySelector("#error-grad").innerHTML = "";
+  }
+  if (address.value === "" || !regAddress.test(address.value)) {
+    errors.push("address error");
     address.classList.add("error");
-    document.querySelector('#error-adresa').innerHTML = 'Unesite podatke u polje';
-  }else{
+    document.querySelector("#error-adresa").innerHTML =
+      "Unesite podatke u polje";
+  } else {
     address.classList.remove("error");
-    document.querySelector('#error-adresa').innerHTML = '';
-  };  
-  if(email.value === "" || !regEmail.test(email.value)){
-    errors.push('email error');
+    document.querySelector("#error-adresa").innerHTML = "";
+  }
+  if (email.value === "" || !regEmail.test(email.value)) {
+    errors.push("email error");
     email.classList.add("error");
-    document.querySelector('#error-email').innerHTML = 'Unesite podatke u polje';
-  }else{
+    document.querySelector("#error-email").innerHTML =
+      "Unesite podatke u polje";
+  } else {
     email.classList.remove("error");
-    document.querySelector('#error-email').innerHTML = '';
-  };
-  if(phone.value === "" || !regPhone.test(phone.value)){
-    errors.push('phone error');
+    document.querySelector("#error-email").innerHTML = "";
+  }
+  if (phone.value === "" || !regPhone.test(phone.value)) {
+    errors.push("phone error");
     phone.classList.add("error");
-    document.querySelector('#error-telefon').innerHTML = 'Unesite podatke u polje';
-  }else{
+    document.querySelector("#error-telefon").innerHTML =
+      "Unesite podatke u polje";
+  } else {
     phone.classList.remove("error");
-    document.querySelector('#error-telefon').innerHTML = '';
-  };
+    document.querySelector("#error-telefon").innerHTML = "";
+  }
   console.log(errors);
-  if(errors.length == 0){
-    alert('Uspešna kupovina');
+  if (errors.length == 0) {
+    alert("Uspešna kupovina");
     return false;
-  }else{
+  } else {
     return false;
-  } 
+  }
 }
-

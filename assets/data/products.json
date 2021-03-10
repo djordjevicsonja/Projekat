@@ -285,6 +285,21 @@
   {
     "categoryId": 8,
     "category": "Police",
-    "imgSrc": "assets/images/kategorije/police.jpg"
+    "imgSrc": "assets/images/kategorije/police.jpg",
+    "articles":[
+      {
+        "id": 1,
+        "articleNumber": "4441",
+        "article": "Ugaona metalna polica",
+        "manifactur": "Lapino",
+        "dimension": "20x25x39",
+        "desc": "Elegantna ugaona metalna polica koja će Vam omogućiti da efikasno iskoristite prostor u Vašem kupatilo",
+        "image": {
+          "src": "assets/images/proizvodi/orm_p2.jpg",
+          "alt": "Ugaona metalna polica"
+        },
+        "price": "1000"
+      }
+    ]
   }
 ]

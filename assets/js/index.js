@@ -67,7 +67,6 @@ class CategoryProducts {
       productBox.appendChild(categRow);
     }
 
-    console.log(data);
     this.getCategoryBtns();
     this.getProductsFromCategory(data);
 
@@ -78,9 +77,7 @@ class CategoryProducts {
   }
   searchProducts(data) {
     let allArticles = data.map((el) => el.articles);
-    console.log(allArticles);
     let arrayArticles = Array.prototype.concat.apply([], allArticles);
-    console.log(arrayArticles);
 
     searchInputBtn.addEventListener("click", () => {
       if (searchInput.value == "") {
@@ -130,6 +127,7 @@ class CategoryProducts {
         let btnId = btn.dataset.id;
         Storage.category(btnId);
         window.location.href = "proizvodi.html";
+      
       });
     });
   }
@@ -139,6 +137,8 @@ class CategoryProducts {
     let categProd = data.filter((prod) => prod.categoryId == getId);
     this.renderProducts(categProd);
     this.getAddToCart(categProd);
+    // let log = new Registration();
+    // log.logIn();
   }
 
   renderProducts(prodCateg) {
@@ -407,7 +407,6 @@ class Cart {
     }
     cartTotal.innerText = sum;
     cartItems.innerText = sumItems;
-    console.log(sum);
   }
 
   removeItem(itemNum) {
@@ -446,6 +445,7 @@ class Cart {
 
 class Registration {
   renderLogReg() {
+    this.checkLoggedUser();
     this.register();
     this.logIn();
     this.logOut();
@@ -534,6 +534,20 @@ class Registration {
       window.location.reload();
     })
   }
+  checkLoggedUser(){
+    window.onload = ()=>{
+      let loggedUser = Storage.getLogIn();
+      if(loggedUser != null){
+        if(loggedUser.userN != null){
+          logInBtn.setAttribute('class', 'remove');
+          registerBtn.setAttribute('class', 'remove');
+          logInUser.setAttribute('class','btn-lr');
+          logInUser.textContent = loggedUser.userN;
+          logOutBtn.setAttribute('class', 'btn-lr');
+        }
+      }
+    }
+  }
   
   logIn() {
     let loggedUser = {};
@@ -562,7 +576,7 @@ class Registration {
             loggedUser.userN = userName;
             loggedUser.pass = pass;
             Storage.saveLogIn(loggedUser);
-            logForm.setAttribute('class', 'remove');
+            logForm.setAttribute('class', 'remove');   
             if(loggedUser != null){
               if(loggedUser.userN != null){
                 logInBtn.setAttribute('class', 'remove');
@@ -571,7 +585,7 @@ class Registration {
                 logInUser.textContent = loggedUser.userN;
                 logOutBtn.setAttribute('class', 'btn-lr');
               }
-            }
+            }        
             return;
           } else {
             if (localUsers[i].userN == userName || localUsers[i].pass != pass) {
@@ -648,9 +662,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const product = new Product();
   const cart = new Cart();
   const reg = new Registration();
+  reg.renderLogReg();
   cart.setupCart();
   category.listeners();
-  reg.renderLogReg();
   products
     .getAllProducts()
     .then((data) => {

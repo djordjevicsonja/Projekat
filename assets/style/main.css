@@ -515,6 +515,7 @@ text-align: start;
     display: none;
 }
 
+
 @media (max-width: 991px){
     .left-header{
         display: none;

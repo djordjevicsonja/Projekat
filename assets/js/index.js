@@ -126,8 +126,7 @@ class CategoryProducts {
       btn.addEventListener("click", () => {
         let btnId = btn.dataset.id;
         Storage.category(btnId);
-        window.location.href = "proizvodi.html";
-      
+        window.location.href = "proizvodi.html";     
       });
     });
   }
@@ -137,8 +136,6 @@ class CategoryProducts {
     let categProd = data.filter((prod) => prod.categoryId == getId);
     this.renderProducts(categProd);
     this.getAddToCart(categProd);
-    // let log = new Registration();
-    // log.logIn();
   }
 
   renderProducts(prodCateg) {

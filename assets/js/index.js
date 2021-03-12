@@ -18,6 +18,12 @@ const cartItems = document.querySelector(".cart-items");
 const searchInput = document.querySelector("#search");
 const searchInputBtn = document.querySelector(".search-icon");
 let cart = [];
+let registerBtn = document.querySelector("#reg");
+let logInBtn = document.querySelector("#log");
+let logInUser = document.querySelector("#log-user");
+let logOutBtn = document.querySelector("#log-o");
+let regForm = document.getElementById("regis");
+let logForm = document.getElementById("login");
 
 class AllProducts {
   async getAllProducts() {
@@ -70,58 +76,52 @@ class CategoryProducts {
       this.filterByPrice(data);
     }
   }
-searchProducts(data){
-let allArticles = data.map(el => el.articles);
-console.log(allArticles);
-let arrayArticles = Array.prototype.concat.apply([],allArticles);
-console.log(arrayArticles);
+  searchProducts(data) {
+    let allArticles = data.map((el) => el.articles);
+    console.log(allArticles);
+    let arrayArticles = Array.prototype.concat.apply([], allArticles);
+    console.log(arrayArticles);
 
-// searchInput.addEventListener('input', (e)=>{
-//   if(e.target.value === ''){
-//     alert("Unesii")
-//     return;
-//   }
-//   let res = arrayArticles.filter(d=>{
-//     return d.article.toLowerCase().includes(e.target.value.toLowerCase());
-    
-//   })
-//   console.log(res);
-//   res.forEach(e => {
-//     const prod = new Product(e);
-//     prod.renderProduct(e);
-//   })
-  
-
-// })
-// }
-searchInputBtn.addEventListener('click', ()=>{ 
-  if(searchInput.value == ""){
-    alert("Unesite proizvod za pretragu")
-  } else{
-      this.filterArticles(arrayArticles);
-    }
-})
-}
-filterArticles(arrayArticles){
-let searchTerm = searchInput.value;
-
-
-  let result = arrayArticles.filter((e)=>{
-    if(e.article.toLowerCase().indexOf(searchTerm)>= 0){
-      return true;
-    }else false;
-  })
-  productBox.innerHTML="";
-  if(window.location.href.endsWith('index.html') || window.location.href.endsWith('proizvodi.html') || window.location.href.endsWith('proizvod.html')){
-    result.forEach(e => {
+    searchInputBtn.addEventListener("click", () => {
+      if (searchInput.value == "") {
+        alert("Unesite proizvod za pretragu");
+      } else {
+        if (window.location.href.endsWith("proizvod.html")) {
+          this.filterArticle(arrayArticles);
+        } else if (window.location.href.endsWith("proizvodi.html")) {
+          this.filterArticles(data);
+        }
+      }
+    });
+  }
+  filterArticle(arrayArticles) {
+    let searchTerm = searchInput.value;
+    productBox.innerHTML = "";
+    let res = arrayArticles.filter((e) => {
+      if (e.article.toLowerCase().indexOf(searchTerm) >= 0) {
+        return true;
+      } else false;
+    });
+    res.forEach((e) => {
       const prod = new Product(e);
       prod.renderProduct(e);
       console.log(e);
-  })
-}
+    });
+  }
 
-
-}
+  filterArticles(data) {
+    categoryFromSelect.innerHTML = "";
+    let searchTerm = searchInput.value;
+    let result = data.filter((el) => {
+      if (
+        el.category.toUpperCase().indexOf(searchTerm.trim().toUpperCase()) != -1
+      ) {
+        return true;
+      } else false;
+    });
+    console.log(result);
+    this.renderProducts(result);
+  }
 
   getCategoryBtns() {
     const seeAllBtn = [...document.querySelectorAll(".seeAllBtn")];
@@ -404,10 +404,6 @@ class Cart {
       let price = parseFloat(priceEl.replace("RSD", ""));
       sum = sum + price * parseInt(quantity);
       sumItems += parseInt(quantity);
-      // console.log(items)
-      // console.log(quantity);
-      // console.log(price);
-      // console.log(sum);
     }
     cartTotal.innerText = sum;
     cartItems.innerText = sumItems;
@@ -438,7 +434,7 @@ class Cart {
     }
   }
 
-  showCart() {
+  showCart() {    
     cartDOM.style.transform = "translateX(0)";
     cartWrapper.classList.add("cart-wrapp-bckg");
   }
@@ -446,6 +442,166 @@ class Cart {
     cartDOM.style.transform = "translateX(100%)";
     cartWrapper.classList.remove("cart-wrapp-bckg");
   }
+}
+
+class Registration {
+  renderLogReg() {
+    this.register();
+    this.logIn();
+    this.logOut();
+  }
+  register() {
+    let localUsers = Storage.getUser();
+    let newUser = {};
+    registerBtn.addEventListener("click", function () {
+      document.getElementById("login").setAttribute("class", "remove");
+      if (regForm.getAttribute("class") == "remove") {
+        regForm.setAttribute("class", "register");
+      } else if (regForm.getAttribute("class") == "register") {
+        regForm.setAttribute("class", "remove");
+      }
+
+      regForm.onsubmit = function (e) {
+        e.preventDefault(e);
+        let userName = document.getElementById("name-reg").value.trim();
+        let enterError2 = document.getElementById("enter-error2");
+        let passReg = document.getElementById("pass-reg").value.trim();
+        let passRegConf = document.getElementById("pass-reg-conf").value.trim();
+        if (userName == "") {
+          enterError2.textContent = "Unesite korisničko ime";
+          return false;
+        }
+
+        for (let i = 0; i < userName.length; i++) {
+          if (
+            userName.charAt(i).toUpperCase() == userName.charAt(i).toLowerCase()
+          ) {
+            enterError2.textContent = "Unesite samo slova";
+            return false;
+          }
+        }
+
+        if (localUsers != null) {
+          for (let i = 0; i < localUsers.length; i++) {
+            if (localUsers[i].userN === userName) {
+              enterError2.textContent = "Korisničko ime je zauzeto";
+              return false;
+            }
+          }
+        }
+        let rPassReg = /^[a-zA-Z0-9]{5,}$/;
+        if (passReg !== passRegConf) {
+          enterError2.textContent = "Unete lozinke nisu iste";
+          return false;
+        }
+        if (passReg == passRegConf) {
+          if (passReg === "" || !rPassReg.test(passReg)) {
+            enterError2.textContent =
+              "Lozinka mora imati jedan broj, malo i veliko slovo";
+            return false;
+          }
+        }
+
+        newUser.userN = userName;
+        newUser.pass = passReg;
+        newUser.passConf = passRegConf;
+        localUsers.push(newUser);
+        Storage.saveUser(localUsers);
+        regForm.setAttribute("class", "remove");
+
+        console.log(newUser);
+      };
+    });
+    regForm.onreset = function () {
+      let answer = window.confirm("Da li ste sigurni?");
+      if (answer == false) {
+        return false;
+      }
+      window.location.reload();
+    };
+  }
+   
+   
+ 
+  logOut(){
+    logOutBtn.addEventListener('click', ()=>{
+      let answer = window.confirm('Da li ste sigurni?');
+      if(answer == false){
+        return;
+      }
+      let loggedUser = {};
+      Storage.saveLogIn(loggedUser);
+      window.location.reload();
+    })
+  }
+  
+  logIn() {
+    let loggedUser = {};
+    logInBtn.addEventListener("click", function () {
+      let localUsers = Storage.getUser();
+      console.log(localUsers);
+      if (localUsers.length == 0) {
+        alert("Nema registrovanih korisnika");
+        return false;
+      } else {
+        document.getElementById("regis").setAttribute("class", "remove");
+        if (logForm.getAttribute("class") == "remove") {
+          logForm.setAttribute("class", "login");
+        } else if (logForm.getAttribute("class") == "login") {
+          logForm.setAttribute("class", "remove");
+        }
+      }
+      logForm.onsubmit = function (e) {
+        e.preventDefault();
+        let enterError = document.getElementById("enter-error");
+        let userName = document.getElementById("name-log").value.trim();
+        let pass = document.getElementById("pass-log").value.trim();
+        console.log(localUsers);
+        for (let i in localUsers) {
+          if (localUsers[i].userN == userName && localUsers[i].pass == pass) {
+            loggedUser.userN = userName;
+            loggedUser.pass = pass;
+            Storage.saveLogIn(loggedUser);
+            logForm.setAttribute('class', 'remove');
+            if(loggedUser != null){
+              if(loggedUser.userN != null){
+                logInBtn.setAttribute('class', 'remove');
+                registerBtn.setAttribute('class', 'remove');
+                logInUser.setAttribute('class','btn-lr');
+                logInUser.textContent = loggedUser.userN;
+                logOutBtn.setAttribute('class', 'btn-lr');
+              }
+            }
+            return;
+          } else {
+            if (localUsers[i].userN == userName || localUsers[i].pass != pass) {
+              enterError.textContent = "Neispravna lozinka";
+              return false;
+            } else if (
+              localUsers[i].userN != userName ||
+              localUsers[i].pass == pass
+            ) {
+              enterError.textContent = "Neispravno korisničko ime";
+              return false;
+            } else {
+              enterError.textContent = "Neispravno korisničko ime i lozinka";
+              return false;
+            }
+          }
+        }
+      };
+      logForm.onreset = function () {
+        let answer = window.confirm("Da li ste sigurni?");
+        if (answer == false) {
+          return false;
+        }
+        window.location.reload();
+      };
+
+    });
+  
+  }
+
 }
 
 class Storage {
@@ -469,6 +625,21 @@ class Storage {
       ? JSON.parse(localStorage.getItem("cart"))
       : [];
   }
+  static getUser() {
+    return localStorage.getItem("allUsers")
+      ? JSON.parse(localStorage.getItem("allUsers"))
+      : [];
+  }
+  static saveUser(localUsers) {
+    localStorage.setItem("allUsers", JSON.stringify(localUsers));
+  }
+  static getLogIn(){
+    return JSON.parse(localStorage.getItem("loggedUser"));
+  }
+  static saveLogIn(loggedUser) {
+    localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+  }
+  
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -476,8 +647,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const category = new CategoryProducts();
   const product = new Product();
   const cart = new Cart();
+  const reg = new Registration();
   cart.setupCart();
   category.listeners();
+  reg.renderLogReg();
   products
     .getAllProducts()
     .then((data) => {
@@ -508,54 +681,54 @@ function formValidation() {
 
   if (fName.value === "" || !regFName.test(fName.value)) {
     errors.push("first name error");
-    fName.classList.add("error");
+    fName.classList.add("is-invalid");
     document.querySelector("#error-ime").innerHTML = "Unesite podatke u polje";
   } else {
-    fName.classList.remove("error");
+    fName.classList.remove("is-invalid");
     document.querySelector("#error-ime").innerHTML = "";
   }
   if (lName.value === "" || !regLName.test(lName.value)) {
     errors.push("last name error");
-    lName.classList.add("error");
+    lName.classList.add("is-invalid");
     document.querySelector("#error-prezime").innerHTML =
       "Unesite podatke u polje";
   } else {
-    lName.classList.remove("error");
+    lName.classList.remove("is-invalid");
     document.querySelector("#error-prezime").innerHTML = "";
   }
   if (regCity.value === "" || !regCity.test(city.value)) {
     errors.push("city error");
-    city.classList.add("error");
+    city.classList.add("is-invalid");
     document.querySelector("#error-grad").innerHTML = "Unesite podatke u polje";
   } else {
-    city.classList.remove("error");
+    city.classList.remove("is-invalid");
     document.querySelector("#error-grad").innerHTML = "";
   }
   if (address.value === "" || !regAddress.test(address.value)) {
     errors.push("address error");
-    address.classList.add("error");
+    address.classList.add("is-invalid");
     document.querySelector("#error-adresa").innerHTML =
       "Unesite podatke u polje";
   } else {
-    address.classList.remove("error");
+    address.classList.remove("is-invalid");
     document.querySelector("#error-adresa").innerHTML = "";
   }
   if (email.value === "" || !regEmail.test(email.value)) {
     errors.push("email error");
-    email.classList.add("error");
+    email.classList.add("is-invalid");
     document.querySelector("#error-email").innerHTML =
       "Unesite podatke u polje";
   } else {
-    email.classList.remove("error");
+    email.classList.remove("is-invalid");
     document.querySelector("#error-email").innerHTML = "";
   }
   if (phone.value === "" || !regPhone.test(phone.value)) {
     errors.push("phone error");
-    phone.classList.add("error");
+    phone.classList.add("is-invalid");
     document.querySelector("#error-telefon").innerHTML =
       "Unesite podatke u polje";
   } else {
-    phone.classList.remove("error");
+    phone.classList.remove("is-invalid");
     document.querySelector("#error-telefon").innerHTML = "";
   }
   console.log(errors);

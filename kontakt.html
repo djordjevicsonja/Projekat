@@ -30,23 +30,18 @@
                         </ul>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <ul class="register-login-cart right-header">
+                        <div class="register-login-cart right-header">
 
-                            <li>
-                                <button type="button" class="btn btn-light btn-top-header">Prijava</button>
-                            </li>
-                            <li>
-                                <button type="button" class="btn btn-light btn-top-header">Registracija</button>
-
-                            </li>
-                            <li>
-                                <div class="cart-btn">
-                                    <span class="cart-icon">
-                                        <i class="fas fa-shopping-cart"></i></span>
-                                    <div class="cart-items">0</div>
-                                </div>
-                            </li>
-                        </ul>
+                            <div id="log" class="btn-lr">Prijava</div>
+                            <div id="reg" class="btn-lr">Registracija</div>
+                            <div id="log-user" class="remove"></div>
+                            <div id="log-o" class="remove">Izloguj se</div>
+                            <div class="cart-btn">
+                                <span class="cart-icon">
+                                    <i class="fas fa-shopping-cart"></i></span>
+                                <div class="cart-items"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,8 +59,8 @@
                         <div class="col-12 col-lg-6 d-flex">
                             <div class="search-box">
 
-                                <input type="search" id="search" placeholder="Pretraga proizvoda">
-                                <button class="search-icon">
+                                <input type="search" id="search" placeholder="Pretraga proizvoda" style="visibility: hidden">
+                                <button class="search-icon"style="visibility: hidden">
                                     <i class="fa fa-search"></i>
                                 </button>
                                 <span class="dropdown-icon">
@@ -87,6 +82,42 @@
                     </div>
                 </nav>
             </div>
+        </div>
+        <div id="log-reg-form">
+            <form id="login" class='remove' novalidate>
+                <div class='enter-error' id='enter-error'> </div>
+                <div class='form-group'>
+                    <label for="name-log"> Unesite korisničko ime: </label>
+                    <input id="name-log" type="text" name="name-log" maxlength="8" class='form-control'>
+                </div>
+                <div class='form-group'>
+                    <label for="pass-log"> Unesite lozinku: </label>
+                    <input id="pass-log" type="password" name="pass-log" maxlength="15" class='form-control' currentpassword>
+                </div>
+                <div class='form-group text-center'>
+                    <input value="Potvrdi" type="submit" class='btn-log' id="confirm_log">
+                    <input value="Odustani" type="reset" class='btn-log' id="reset_log">
+                </div>
+            </form>
+            <form id="regis" class='remove' novalidate>
+                <div class='enter-error' id='enter-error2'> </div>
+                <div class='form-group'>
+                    <label for="name-reg"> Unesite korisničko ime: </label>
+                    <input id="name-reg" type="text" name="name-reg" maxlength="8" class='form-control'>
+                </div>
+                <div class='form-group'>
+                    <label for="pass-reg"> Unesite lozinku: </label>
+                    <input id="pass-reg" type="password" name="pass-reg" maxlength="15" class='form-control' new-password>
+                </div>
+                <div class='form-group'>
+                    <label for="pass-reg-conf"> Potvrdite lozinku: </label>
+                    <input id="pass-reg-conf" type="password" name="pass-reg-conf" maxlength="15" class='form-control' new-password>
+                </div>
+                <div class='form-group text-center'>
+                    <input value="Potvrdi" type="submit" class='btn-reg' id="potvrdi_reg">
+                    <input value="Odustani" type="reset" class='btn-reg' id="reset_reg">
+                </div>
+            </form>
         </div>
         <div class="cart-wrapp">
             <div id="cart">
@@ -232,13 +263,10 @@
                             <div class="nav-footer">
                                 <h5>KORISNIČKI SERVIS</h5>
                                 <ul>
-                                    <li><a href="#">Način plaćanja</a></li>
-                                    <li><a href="#">Uputstvo za poručivanje</a></li>
-                                    <li><a href="#">Isporuka</a></li>
-                                    <li><a href="#">Zamena artikla</a></li>
-                                    <li><a href="#">Reklamacije</a></li>
-                                    <li><a href="#">Usluga montaže</a></li>
-                                    <li><a href="#">Politika privatnosti</a></li>
+                                    <li>Isporuka</li>
+                                    <li>Zamena artikla</li>
+                                    <li>Reklamacije</li>
+                                    <li>Usluga montaže</li>
                                 </ul>
                             </div>
                         </div>

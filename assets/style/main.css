@@ -581,14 +581,6 @@ text-align: start;
     #categoryFromSelect{
         width: 80%;
     }
-    /* .img-item-container{
-        width: 180px;
-        height: 200px;
-    }
-    .img-cart-container{
-        width: 100%;
-        margin: 0;
-    } */
 }
 @media (min-width: 768px) and (max-width: 992px){
     .articles-footer h4{
@@ -597,6 +589,18 @@ text-align: start;
     }
     #container-wrapper{
         margin-bottom: 0px;
+    }
+}
+@media (max-width: 420px){
+    .logo-box h2{
+        font-size: 1em;
+        
+    }
+}
+@media (max-width: 320px){
+    .logo-box h2{
+        font-size: 0.8em;
+        
     }
 }
 
